@@ -151,9 +151,9 @@ export const DriverHomeScreen: React.FC = () => {
           <TouchableOpacity style={styles.iconBtn} onPress={onRefresh} activeOpacity={0.7}>
             <RotateCw size={18} color={theme.colors.onSurfaceVariant} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconBtn} onPress={logout} activeOpacity={0.7}>
+          {/* <TouchableOpacity style={styles.iconBtn} onPress={logout} activeOpacity={0.7}>
             <LogOut size={18} color={theme.colors.error} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
 

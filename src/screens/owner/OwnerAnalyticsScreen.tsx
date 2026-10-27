@@ -107,13 +107,13 @@ export const OwnerAnalyticsScreen: React.FC<{ navigation?: any }> = ({ navigatio
           >
             <RotateCw size={18} color={theme.colors.onSurfaceVariant} />
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.iconBtn}
             onPress={logout}
             activeOpacity={0.7}
           >
             <LogOut size={18} color={theme.colors.error} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
 
