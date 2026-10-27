@@ -80,7 +80,12 @@ class ApiClient {
         await AsyncStorage.removeItem('fleet_access_token');
         await AsyncStorage.removeItem('fleet_user');
       }
-      throw new Error(data.message || `Request failed with status ${response.status}`);
+      const error: any = new Error(data.message || `Request failed with status ${response.status}`);
+      error.status = response.status;
+      error.errorType = data.errorType;
+      error.field = data.field;
+      error.data = data;
+      throw error;
     }
 
     return data as T;

@@ -14,6 +14,7 @@ import { theme } from '../../constants/theme';
 import type { Driver, Vehicle } from '../../types';
 import { AddEditDriverModal } from '../../components/AddEditDriverModal';
 import { Users, Plus, Edit2, Trash2, Phone, Car, Award, ShieldCheck, Mail } from 'lucide-react-native';
+import { confirmAction } from '../../utils/alert';
 
 export const OwnerDriversScreen: React.FC = () => {
   const [drivers, setDrivers] = useState<Driver[]>([]);
@@ -58,21 +59,19 @@ export const OwnerDriversScreen: React.FC = () => {
   };
 
   const handleDelete = (id: string, name: string) => {
-    Alert.alert('Delete Driver', `Are you sure you want to remove ${name} from your team?`, [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: async () => {
-          try {
-            await api.deleteDriver(id);
-            await loadData();
-          } catch (err: any) {
-            Alert.alert('Error', err.message || 'Failed to delete driver.');
-          }
-        },
+    confirmAction(
+      'Delete Driver',
+      `Are you sure you want to remove ${name} from your team?`,
+      async () => {
+        try {
+          await api.deleteDriver(id);
+          await loadData();
+        } catch (err: any) {
+          Alert.alert('Error', err.message || 'Failed to delete driver.');
+        }
       },
-    ]);
+      'Delete'
+    );
   };
 
   return (

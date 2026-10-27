@@ -3,6 +3,10 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthProvider } from './src/context/AuthContext';
 import { RootNavigator } from './src/navigation/RootNavigator';
+import { setupAlertPolyfill } from './src/utils/alert';
+
+setupAlertPolyfill();
+
 
 export default function App() {
   return (

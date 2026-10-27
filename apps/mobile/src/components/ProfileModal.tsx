@@ -16,6 +16,7 @@ import { theme } from '../constants/theme';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../api/client';
 import type { UserProfile, UpdateProfileRequest } from '../types';
+import { confirmAction } from '../utils/alert';
 import {
   X,
   User,
@@ -171,17 +172,15 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({ visible, onClose }) 
   };
 
   const handleLogout = () => {
-    Alert.alert('Log Out', 'Are you sure you want to sign out?', [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Log Out',
-        style: 'destructive',
-        onPress: async () => {
-          onClose();
-          await logout();
-        },
+    confirmAction(
+      'Log Out',
+      'Are you sure you want to sign out?',
+      async () => {
+        onClose();
+        await logout();
       },
-    ]);
+      'Log Out'
+    );
   };
 
   return (

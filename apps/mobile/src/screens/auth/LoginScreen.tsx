@@ -14,7 +14,7 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { theme } from '../../constants/theme';
 import type { Role } from '../../types';
-import { Car, ShieldCheck, UserCheck, Lock, Mail, Globe, Sparkles } from 'lucide-react-native';
+import { Car, ShieldCheck, UserCheck, Lock, Mail, Globe, Sparkles, AlertCircle } from 'lucide-react-native';
 import { api, getDefaultHost } from '../../api/client';
 
 export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
@@ -25,7 +25,7 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [showHostConfig, setShowHostConfig] = useState(false);
   const [customHost, setCustomHost] = useState(getDefaultHost());
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string; form?: string }>({});
 
   const handleRoleChange = (newRole: Role) => {
     setRole(newRole);
@@ -33,7 +33,7 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   };
 
   const handleLogin = async () => {
-    const newErrors: { email?: string; password?: string } = {};
+    const newErrors: { email?: string; password?: string; form?: string } = {};
 
     if (!email.trim()) {
       newErrors.email = 'Email address is required.';
@@ -46,8 +46,9 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     }
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
       const firstError = newErrors.email || newErrors.password;
+      newErrors.form = firstError || 'Please enter all required fields.';
+      setErrors(newErrors);
       Alert.alert('Required Fields', firstError || 'Please enter all required fields.');
       return;
     }
@@ -61,7 +62,35 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
         role,
       });
     } catch (err: any) {
-      Alert.alert('Sign In Failed', err.message || 'Invalid email or password. Please try again.');
+      const msg = err.message || 'Invalid email or password. Please try again.';
+      const field = err.field || err.data?.field;
+      const errorType = err.errorType || err.data?.errorType;
+
+      const serverErrors: { email?: string; password?: string; form?: string } = {
+        form: msg,
+      };
+
+      if (
+        field === 'email' ||
+        errorType === 'USER_NOT_FOUND' ||
+        errorType === 'ROLE_MISMATCH' ||
+        msg.toLowerCase().includes('not exist') ||
+        msg.toLowerCase().includes('not found') ||
+        msg.toLowerCase().includes('registered as')
+      ) {
+        serverErrors.email = msg;
+      } else if (
+        field === 'password' ||
+        errorType === 'WRONG_PASSWORD' ||
+        msg.toLowerCase().includes('wrong password') ||
+        msg.toLowerCase().includes('invalid password') ||
+        msg.toLowerCase().includes('incorrect password')
+      ) {
+        serverErrors.password = msg;
+      }
+
+      setErrors(serverErrors);
+      Alert.alert('Sign In Failed', msg);
     } finally {
       setLoading(false);
     }
@@ -100,6 +129,14 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
 
         {/* Main Auth Container */}
         <View style={styles.mainCard}>
+          {/* Form Error Banner */}
+          {errors.form ? (
+            <View style={styles.errorBanner}>
+              <AlertCircle size={18} color={theme.colors.error} style={styles.errorBannerIcon} />
+              <Text style={styles.errorBannerText}>{errors.form}</Text>
+            </View>
+          ) : null}
+
           {/* Role Segmented Selector */}
           <Text style={styles.sectionLabel}>Select Portal Role</Text>
           <View style={styles.segmentedControl}>
@@ -146,7 +183,9 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                 value={email}
                 onChangeText={(val) => {
                   setEmail(val);
-                  if (errors.email) setErrors((prev) => ({ ...prev, email: undefined }));
+                  if (errors.email || errors.form) {
+                    setErrors((prev) => ({ ...prev, email: undefined, form: undefined }));
+                  }
                 }}
                 autoCapitalize="none"
                 keyboardType="email-address"
@@ -169,7 +208,9 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                 value={password}
                 onChangeText={(val) => {
                   setPassword(val);
-                  if (errors.password) setErrors((prev) => ({ ...prev, password: undefined }));
+                  if (errors.password || errors.form) {
+                    setErrors((prev) => ({ ...prev, password: undefined, form: undefined }));
+                  }
                 }}
                 secureTextEntry
               />
@@ -293,6 +334,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: theme.colors.borderLight,
     ...theme.shadows.level1,
+  },
+  errorBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff1f0',
+    borderColor: '#ffa39e',
+    borderWidth: 1,
+    borderRadius: theme.radius.md,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    marginBottom: theme.spacing.md,
+    gap: 8,
+  },
+  errorBannerIcon: {
+    flexShrink: 0,
+  },
+  errorBannerText: {
+    flex: 1,
+    ...theme.typography.bodyMd,
+    color: theme.colors.error,
+    fontWeight: '500',
+    fontSize: 13,
+    lineHeight: 18,
   },
   sectionLabel: {
     ...theme.typography.labelMd,

@@ -16,6 +16,7 @@ import type { Trip, Expense, Vehicle, Driver, Company } from '../../types';
 import { AddEditTripModal } from '../../components/AddEditTripModal';
 import { AddEditExpenseModal } from '../../components/AddEditExpenseModal';
 import { AddEditCompanyModal } from '../../components/AddEditCompanyModal';
+import { confirmAction } from '../../utils/alert';
 import {
   Navigation,
   Fuel,
@@ -101,21 +102,19 @@ export const OwnerTripsExpensesScreen: React.FC = () => {
   };
 
   const handleDeleteTrip = (id: string, name: string) => {
-    Alert.alert('Delete Trip', `Are you sure you want to delete trip to ${name}?`, [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: async () => {
-          try {
-            await api.deleteTrip(id);
-            await loadData();
-          } catch (err: any) {
-            Alert.alert('Error', err.message || 'Failed to delete trip.');
-          }
-        },
+    confirmAction(
+      'Delete Trip',
+      `Are you sure you want to delete trip to ${name}?`,
+      async () => {
+        try {
+          await api.deleteTrip(id);
+          await loadData();
+        } catch (err: any) {
+          Alert.alert('Error', err.message || 'Failed to delete trip.');
+        }
       },
-    ]);
+      'Delete'
+    );
   };
 
   // Expense Handlers
@@ -129,21 +128,19 @@ export const OwnerTripsExpensesScreen: React.FC = () => {
   };
 
   const handleDeleteExpense = (id: string, category: string, amount: number) => {
-    Alert.alert('Delete Expense', `Are you sure you want to delete ${category} expense of ₹${amount}?`, [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: async () => {
-          try {
-            await api.deleteExpense(id);
-            await loadData();
-          } catch (err: any) {
-            Alert.alert('Error', err.message || 'Failed to delete expense.');
-          }
-        },
+    confirmAction(
+      'Delete Expense',
+      `Are you sure you want to delete ${category} expense of ₹${amount}?`,
+      async () => {
+        try {
+          await api.deleteExpense(id);
+          await loadData();
+        } catch (err: any) {
+          Alert.alert('Error', err.message || 'Failed to delete expense.');
+        }
       },
-    ]);
+      'Delete'
+    );
   };
 
   // Company Handlers
@@ -157,21 +154,19 @@ export const OwnerTripsExpensesScreen: React.FC = () => {
   };
 
   const handleDeleteCompany = (id: string, name: string) => {
-    Alert.alert('Delete Company', `Are you sure you want to remove "${name}"? Past trips associated with this company will be safely kept.`, [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: async () => {
-          try {
-            await api.deleteCompany(id);
-            await loadData();
-          } catch (err: any) {
-            Alert.alert('Error', err.message || 'Failed to delete company.');
-          }
-        },
+    confirmAction(
+      'Delete Company',
+      `Are you sure you want to remove "${name}"? Past trips associated with this company will be safely kept.`,
+      async () => {
+        try {
+          await api.deleteCompany(id);
+          await loadData();
+        } catch (err: any) {
+          Alert.alert('Error', err.message || 'Failed to delete company.');
+        }
       },
-    ]);
+      'Delete'
+    );
   };
 
   const getCategoryBadge = (cat: string) => {

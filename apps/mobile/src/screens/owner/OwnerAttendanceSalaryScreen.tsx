@@ -17,6 +17,7 @@ import { api } from '../../api/client';
 import type { Attendance, Salary, Driver, AttendanceType, SalaryPaymentStatus, Expense } from '../../types';
 import { SalarySlipModal } from '../../components/SalarySlipModal';
 import { shareSalarySlipOnWhatsApp } from '../../utils/salarySlip';
+import { confirmAction } from '../../utils/alert';
 import {
   CalendarCheck,
   BadgeDollarSign,
@@ -266,24 +267,18 @@ export const OwnerAttendanceSalaryScreen: React.FC = () => {
   };
 
   const handleDeleteAttendance = (att: Attendance) => {
-    Alert.alert(
+    confirmAction(
       'Delete Attendance',
       `Delete attendance record for ${att.driver?.name || 'Driver'} on ${att.date}?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await api.deleteAttendance(att.id);
-              loadAttendance();
-            } catch (err: any) {
-              Alert.alert('Error', err.message || 'Failed to delete record.');
-            }
-          },
-        },
-      ]
+      async () => {
+        try {
+          await api.deleteAttendance(att.id);
+          loadAttendance();
+        } catch (err: any) {
+          Alert.alert('Error', err.message || 'Failed to delete record.');
+        }
+      },
+      'Delete'
     );
   };
 
@@ -414,24 +409,18 @@ export const OwnerAttendanceSalaryScreen: React.FC = () => {
   };
 
   const handleDeleteSalary = (sal: Salary) => {
-    Alert.alert(
+    confirmAction(
       'Delete Payroll',
       `Delete salary record for ${sal.driver?.name || 'Driver'} for ${MONTH_NAMES[sal.month - 1]}?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await api.deleteSalary(sal.id);
-              loadSalaries();
-            } catch (err: any) {
-              Alert.alert('Error', err.message || 'Failed to delete record.');
-            }
-          },
-        },
-      ]
+      async () => {
+        try {
+          await api.deleteSalary(sal.id);
+          loadSalaries();
+        } catch (err: any) {
+          Alert.alert('Error', err.message || 'Failed to delete record.');
+        }
+      },
+      'Delete'
     );
   };
 
