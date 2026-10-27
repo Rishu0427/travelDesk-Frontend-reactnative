@@ -1,0 +1,25 @@
+{
+  "name": "traveldesk-mobileapp-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TravelDesk React Native + Next.js TypeScript Monorepo",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "npm run start --workspace=@traveldesk/mobile",
+    "mobile": "npm run start --workspace=@traveldesk/mobile",
+    "backend": "npm run dev --workspace=@traveldesk/backend",
+    "dev:backend": "npm run dev --workspace=@traveldesk/backend",
+    "build:backend": "npm run build --workspace=@traveldesk/backend",
+    "start:backend": "npm run start --workspace=@traveldesk/backend",
+    "prisma:generate": "npm run prisma:generate --workspace=@traveldesk/backend",
+    "prisma:push": "npm run prisma:push --workspace=@traveldesk/backend",
+    "prisma:seed": "npm run prisma:seed --workspace=@traveldesk/backend",
+    "check": "npm run check --workspace=@traveldesk/mobile"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}
