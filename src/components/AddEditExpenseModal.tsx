@@ -34,13 +34,15 @@ const CATEGORIES: { label: string; value: ExpenseCategory; icon: string }[] = [
   { label: 'Other', value: 'OTHER', icon: '📦' },
 ];
 
+const EMPTY_ARRAY: any[] = [];
+
 export const AddEditExpenseModal: React.FC<AddEditExpenseModalProps> = ({
   visible,
   onClose,
   onSubmit,
   expenseToEdit,
-  vehicles = [],
-  drivers = [],
+  vehicles = EMPTY_ARRAY,
+  drivers = EMPTY_ARRAY,
   isOwner = false,
 }) => {
   const [category, setCategory] = useState<ExpenseCategory>('CNG');
@@ -52,12 +54,14 @@ export const AddEditExpenseModal: React.FC<AddEditExpenseModalProps> = ({
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (!visible) return;
+
     if (expenseToEdit) {
       setCategory(expenseToEdit.category || 'OTHER');
       setAmount(expenseToEdit.amount ? expenseToEdit.amount.toString() : '');
       setNotes(expenseToEdit.notes || '');
-      setVehicleId(expenseToEdit.vehicleId || '');
-      setDriverId(expenseToEdit.driverId || '');
+      setVehicleId(expenseToEdit.vehicleId || (vehicles.length > 0 ? vehicles[0].id : ''));
+      setDriverId(expenseToEdit.driverId || (drivers.length > 0 ? drivers[0].id : ''));
       setDriverDeductible(Boolean(expenseToEdit.driverDeductible ?? expenseToEdit.isDriverDeductible));
     } else {
       setCategory('CNG');
@@ -67,7 +71,15 @@ export const AddEditExpenseModal: React.FC<AddEditExpenseModalProps> = ({
       setDriverId(drivers.length > 0 ? drivers[0].id : '');
       setDriverDeductible(false);
     }
-  }, [expenseToEdit, visible, vehicles, drivers]);
+  }, [expenseToEdit, visible]);
+
+  // Set default vehicle if vehicles load after modal is opened
+  useEffect(() => {
+    if (!visible || expenseToEdit) return;
+    if (!vehicleId && vehicles.length > 0) {
+      setVehicleId(vehicles[0].id);
+    }
+  }, [visible, expenseToEdit, vehicles, vehicleId]);
 
   const handleCategorySelect = (cat: ExpenseCategory) => {
     setCategory(cat);
@@ -117,7 +129,7 @@ export const AddEditExpenseModal: React.FC<AddEditExpenseModalProps> = ({
             </TouchableOpacity>
           </View>
 
-          <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
+          <ScrollView style={styles.body} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
             {/* Category / Fuel Selector */}
             <Text style={styles.label}>Select Expense Category / Tag</Text>
             <View style={styles.categoryGrid}>
@@ -199,7 +211,7 @@ export const AddEditExpenseModal: React.FC<AddEditExpenseModalProps> = ({
             {vehicles.length > 0 && (
               <View>
                 <Text style={styles.label}>Select Vehicle</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 10 }}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled" style={{ marginBottom: 10 }}>
                   {vehicles.map((v) => (
                     <TouchableOpacity
                       key={v.id}
@@ -218,7 +230,7 @@ export const AddEditExpenseModal: React.FC<AddEditExpenseModalProps> = ({
             {isOwner && drivers.length > 0 && (
               <View>
                 <Text style={styles.label}>Paid by / Driver</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 10 }}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled" style={{ marginBottom: 10 }}>
                   {drivers.map((d) => (
                     <TouchableOpacity
                       key={d.id}

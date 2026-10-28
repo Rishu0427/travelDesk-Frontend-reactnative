@@ -274,7 +274,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({ visible, onClose }) 
                           },
                         ]}
                       >
-                        {isDriver ? 'Driver Member' : 'Fleet Owner / Admin'}
+                        {isDriver ? 'Driver Member' : 'Fleet Owner'}
                       </Text>
                     </View>
 

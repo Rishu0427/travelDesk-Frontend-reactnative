@@ -37,14 +37,16 @@ interface AddEditTripModalProps {
   isOwner?: boolean;
 }
 
+const EMPTY_ARRAY: any[] = [];
+
 export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
   visible,
   onClose,
   onSubmit,
   tripToEdit,
-  vehicles = [],
-  drivers = [],
-  companies = [],
+  vehicles = EMPTY_ARRAY,
+  drivers = EMPTY_ARRAY,
+  companies = EMPTY_ARRAY,
   onAddNewCompany,
   isOwner = false,
 }) => {
@@ -65,6 +67,8 @@ export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
   };
 
   useEffect(() => {
+    if (!visible) return;
+
     if (tripToEdit) {
       setCompanyId(tripToEdit.companyId || '');
       setCompanyName(tripToEdit.companyName || '');
@@ -73,8 +77,8 @@ export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
       setKm(tripToEdit.km ? tripToEdit.km.toString() : '');
       setTripAmount(tripToEdit.tripAmount ? tripToEdit.tripAmount.toString() : '');
       setNotes(tripToEdit.notes || '');
-      setVehicleId(tripToEdit.vehicleId || '');
-      setDriverId(tripToEdit.driverId || '');
+      setVehicleId(tripToEdit.vehicleId || (vehicles.length > 0 ? vehicles[0].id : ''));
+      setDriverId(tripToEdit.driverId || (drivers.length > 0 ? drivers[0].id : ''));
     } else {
       // If companies available, default to first or blank
       if (companies.length > 0) {
@@ -93,7 +97,24 @@ export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
       setVehicleId(vehicles.length > 0 ? vehicles[0].id : '');
       setDriverId(drivers.length > 0 ? drivers[0].id : '');
     }
-  }, [tripToEdit, visible, vehicles, drivers, companies]);
+  }, [tripToEdit, visible]);
+
+  // Set default vehicle if vehicles load after modal is opened
+  useEffect(() => {
+    if (!visible || tripToEdit) return;
+    if (!vehicleId && vehicles.length > 0) {
+      setVehicleId(vehicles[0].id);
+    }
+  }, [visible, tripToEdit, vehicles, vehicleId]);
+
+  // Set default company if companies load after modal is opened
+  useEffect(() => {
+    if (!visible || tripToEdit) return;
+    if (!companyId && !isCustomCompany && companies.length > 0) {
+      setCompanyId(companies[0].id);
+      setCompanyName(companies[0].name);
+    }
+  }, [visible, tripToEdit, companies, companyId, isCustomCompany]);
 
   // Handle company selection
   const handleSelectCompany = (comp: Company) => {
@@ -174,7 +195,7 @@ export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
             </TouchableOpacity>
           </View>
 
-          <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
+          <ScrollView style={styles.body} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
             {/* Select Client Company */}
             <View style={styles.companyHeaderRow}>
               <Text style={styles.label}>Client / Business Partner Company</Text>
@@ -196,6 +217,7 @@ export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
                 style={{ marginBottom: 8 }}
                 contentContainerStyle={{ gap: 6 }}
               >
@@ -309,7 +331,7 @@ export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
             {vehicles.length > 0 && (
               <View>
                 <Text style={styles.label}>Select Vehicle</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 10 }}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled" style={{ marginBottom: 10 }}>
                   {vehicles.map((v) => (
                     <TouchableOpacity
                       key={v.id}
@@ -328,7 +350,7 @@ export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
             {isOwner && drivers.length > 0 && (
               <View>
                 <Text style={styles.label}>Assign Driver for Log</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 10 }}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled" style={{ marginBottom: 10 }}>
                   {drivers.map((d) => (
                     <TouchableOpacity
                       key={d.id}

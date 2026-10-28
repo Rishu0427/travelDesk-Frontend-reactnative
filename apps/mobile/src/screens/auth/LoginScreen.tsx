@@ -178,8 +178,8 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
               </Text>
             </TouchableOpacity>
 
-            {/* Admin option is only displayed on Web clients */}
-            {Platform.OS === 'web' && (
+            {/* Admin option is hidden for now */}
+            {/* {Platform.OS === 'web' && (
               <TouchableOpacity
                 activeOpacity={0.8}
                 style={[styles.segmentBtn, role === 'ADMIN' && styles.segmentBtnActive]}
@@ -193,7 +193,7 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                   Admin
                 </Text>
               </TouchableOpacity>
-            )}
+            )} */}
           </View>
 
           {/* Email Input */}
