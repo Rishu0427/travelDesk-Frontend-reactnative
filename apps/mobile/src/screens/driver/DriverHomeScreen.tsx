@@ -167,6 +167,33 @@ export const DriverHomeScreen: React.FC = () => {
           />
         }
       >
+        {/* Latest Payslip / Salary Slip Banner */}
+        {latestSalary && (
+          <View style={styles.salarySlipBanner}>
+            <View style={styles.salarySlipBannerHeader}>
+              <View style={styles.salarySlipIconBadge}>
+                <FileText size={20} color="#059669" />
+              </View>
+              <View style={{ flex: 1, marginLeft: 12 }}>
+                <Text style={styles.salarySlipBannerTitle}>
+                  {MONTH_NAMES[latestSalary.month - 1] || `Month ${latestSalary.month}`} {latestSalary.year} Payslip
+                </Text>
+                <Text style={styles.salarySlipBannerSub}>
+                  Net: ₹{calculateNetPayable(latestSalary).toLocaleString()} • Status: {latestSalary.paymentStatus || 'PENDING'}
+                </Text>
+              </View>
+              <TouchableOpacity
+                style={styles.salarySlipViewBtn}
+                onPress={() => setIsSalarySlipModalOpen(true)}
+                activeOpacity={0.85}
+              >
+                <FileText size={14} color="#fff" />
+                <Text style={styles.salarySlipViewBtnText}>View Slip</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+
         {/* Quick Stats Grid */}
         <View style={styles.statsGrid}>
           <View style={styles.statCard}>
@@ -230,7 +257,7 @@ export const DriverHomeScreen: React.FC = () => {
         </View>
 
         {/* Driver Profile Quick Banner */}
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.profileBanner}
           activeOpacity={0.85}
           onPress={() => setIsProfileModalOpen(true)}
@@ -250,34 +277,7 @@ export const DriverHomeScreen: React.FC = () => {
             <Edit2 size={13} color={theme.colors.secondary} />
             <Text style={styles.profileBannerBtnText}>View / Edit</Text>
           </View>
-        </TouchableOpacity>
-
-        {/* Latest Payslip / Salary Slip Banner */}
-        {latestSalary && (
-          <View style={styles.salarySlipBanner}>
-            <View style={styles.salarySlipBannerHeader}>
-              <View style={styles.salarySlipIconBadge}>
-                <FileText size={20} color="#059669" />
-              </View>
-              <View style={{ flex: 1, marginLeft: 12 }}>
-                <Text style={styles.salarySlipBannerTitle}>
-                  {MONTH_NAMES[latestSalary.month - 1] || `Month ${latestSalary.month}`} {latestSalary.year} Payslip
-                </Text>
-                <Text style={styles.salarySlipBannerSub}>
-                  Net: ₹{calculateNetPayable(latestSalary).toLocaleString()} • Status: {latestSalary.paymentStatus || 'PENDING'}
-                </Text>
-              </View>
-              <TouchableOpacity
-                style={styles.salarySlipViewBtn}
-                onPress={() => setIsSalarySlipModalOpen(true)}
-                activeOpacity={0.85}
-              >
-                <FileText size={14} color="#fff" />
-                <Text style={styles.salarySlipViewBtnText}>View Slip</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
+        </TouchableOpacity> */}
 
         {/* Today's Trips */}
         <View style={styles.card}>

@@ -55,6 +55,7 @@ class ApiClient {
     const token = await AsyncStorage.getItem('fleet_access_token');
     return {
       'Content-Type': 'application/json',
+      'X-Client-Platform': Platform.OS,
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     };
   }
@@ -154,7 +155,10 @@ class ApiClient {
       user: User;
     }>('/auth/login', {
       method: 'POST',
-      body: JSON.stringify(credentials),
+      body: JSON.stringify({
+        ...credentials,
+        clientPlatform: Platform.OS,
+      }),
     });
 
     await AsyncStorage.setItem('fleet_access_token', res.accessToken);

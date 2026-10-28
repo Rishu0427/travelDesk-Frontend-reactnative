@@ -14,7 +14,7 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { theme } from '../../constants/theme';
 import type { Role } from '../../types';
-import { Car, ShieldCheck, UserCheck, Lock, Mail, Globe, Sparkles, AlertCircle } from 'lucide-react-native';
+import { Car, ShieldCheck, UserCheck, Lock, Mail, Globe, Sparkles, AlertCircle, ShieldAlert } from 'lucide-react-native';
 import { api, getDefaultHost } from '../../api/client';
 
 export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
@@ -50,6 +50,13 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       newErrors.form = firstError || 'Please enter all required fields.';
       setErrors(newErrors);
       Alert.alert('Required Fields', firstError || 'Please enter all required fields.');
+      return;
+    }
+
+    if (role === 'ADMIN' && Platform.OS !== 'web') {
+      const restrictedMsg = 'Admin login is restricted to web clients only. Mobile devices are not allowed to log in as admin.';
+      setErrors({ form: restrictedMsg });
+      Alert.alert('Access Restricted', restrictedMsg);
       return;
     }
 
@@ -98,10 +105,13 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   const fillDemoCredentials = () => {
     if (role === 'OWNER') {
-      setEmail('shubham@fleet.com');
+      setEmail('owner@traveldesk.com');
+      setPassword('password123');
+    } else if (role === 'ADMIN') {
+      setEmail('admin@traveldesk.com');
       setPassword('password123');
     } else {
-      setEmail('driver@fleet.com');
+      setEmail('driver@traveldesk.com');
       setPassword('password123');
     }
   };
@@ -167,6 +177,23 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                 Driver
               </Text>
             </TouchableOpacity>
+
+            {/* Admin option is only displayed on Web clients */}
+            {Platform.OS === 'web' && (
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={[styles.segmentBtn, role === 'ADMIN' && styles.segmentBtnActive]}
+                onPress={() => handleRoleChange('ADMIN')}
+              >
+                <ShieldAlert
+                  size={18}
+                  color={role === 'ADMIN' ? theme.colors.onPrimary : theme.colors.onSurfaceVariant}
+                />
+                <Text style={[styles.segmentText, role === 'ADMIN' && styles.segmentTextActive]}>
+                  Admin
+                </Text>
+              </TouchableOpacity>
+            )}
           </View>
 
           {/* Email Input */}
@@ -178,7 +205,13 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
               <Mail size={18} color={errors.email ? theme.colors.error : theme.colors.outline} style={styles.inputIcon} />
               <TextInput
                 style={styles.input}
-                placeholder={role === 'OWNER' ? 'owner@traveldesk.com' : 'driver@traveldesk.com'}
+                placeholder={
+                  role === 'OWNER'
+                    ? 'owner@traveldesk.com'
+                    : role === 'ADMIN'
+                    ? 'admin@traveldesk.com'
+                    : 'driver@traveldesk.com'
+                }
                 placeholderTextColor={theme.colors.outline}
                 value={email}
                 onChangeText={(val) => {
@@ -229,13 +262,17 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
               <ActivityIndicator color={theme.colors.onPrimary} size="small" />
             ) : (
               <Text style={styles.primaryBtnText}>
-                Sign In as {role === 'OWNER' ? 'Owner' : 'Driver'}
+                Sign In as {role === 'OWNER' ? 'Owner' : role === 'ADMIN' ? 'Admin' : 'Driver'}
               </Text>
             )}
           </TouchableOpacity>
 
           {/* Register Links */}
-          {role === 'OWNER' ? (
+          {role === 'ADMIN' ? (
+            <View style={styles.footerLinkRow}>
+              <Text style={styles.footerText}>Platform Administrator Portal (Web Client Only)</Text>
+            </View>
+          ) : role === 'OWNER' ? (
             <View style={styles.footerLinkRow}>
               <Text style={styles.footerText}>New to TravelDesk Fleet? </Text>
               <TouchableOpacity onPress={() => navigation.navigate('Register', { role: 'OWNER' })}>

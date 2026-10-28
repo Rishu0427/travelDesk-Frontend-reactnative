@@ -1,4 +1,4 @@
-export type Role = 'OWNER' | 'DRIVER';
+export type Role = 'OWNER' | 'DRIVER' | 'ADMIN';
 
 export type FuelType = 'CNG' | 'PETROL' | 'DIESEL' | 'EV';
 
