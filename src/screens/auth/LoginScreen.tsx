@@ -291,7 +291,7 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
 
         {/* Server Connection Settings */}
         <View style={styles.serverConfigContainer}>
-          {/* <TouchableOpacity
+          <TouchableOpacity
             style={styles.serverToggle}
             onPress={() => setShowHostConfig(!showHostConfig)}
           >
@@ -299,7 +299,7 @@ export const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
             <Text style={styles.serverToggleText}>
               Backend Server Endpoint ({Platform.OS.toUpperCase()})
             </Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
 
           {showHostConfig && (
             <View style={styles.serverCard}>

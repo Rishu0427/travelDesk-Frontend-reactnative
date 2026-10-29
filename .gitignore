@@ -1,1 +1,8 @@
 node_modules
+.expo
+dist
+web-build
+
+# Local environment overrides
+.env*.local
+.env.local

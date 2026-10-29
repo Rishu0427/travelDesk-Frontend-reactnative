@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
+import { ENV } from '../constants/env';
 import type {
   User,
   Vehicle,
@@ -16,17 +17,47 @@ import type {
 } from '../types';
 
 export const getDefaultHost = (): string => {
-  if (Platform.OS === 'web') {
-    if (typeof window !== 'undefined' && window.location?.hostname) {
-      return `${window.location.protocol}//${window.location.hostname}:8080/api`;
-    }
-    return 'http://localhost:8080/api';
+  // 1. Android-specific explicit override from .env
+  if (Platform.OS === 'android' && ENV.API_URL_ANDROID) {
+    return ENV.API_URL_ANDROID;
   }
+
+  // 2. Base API URL from .env
+  if (ENV.API_URL) {
+    if (Platform.OS === 'web') {
+      if (typeof window !== 'undefined' && window.location?.hostname) {
+        if (ENV.API_URL.includes('localhost') && window.location.hostname !== 'localhost') {
+          return `${window.location.protocol}//${window.location.hostname}:8080/api`;
+        }
+      }
+      return ENV.API_URL;
+    }
+
+    // On Android, if the URL contains localhost, map to 10.0.2.2 or Metro host
+    if (Platform.OS === 'android' && ENV.API_URL.includes('localhost')) {
+      try {
+        const scriptURL: string | undefined = NativeModules?.SourceCode?.scriptURL;
+        if (scriptURL) {
+          const match = scriptURL.match(/https?:\/\/([^:\/]+)/);
+          if (match && match[1]) {
+            const host = match[1];
+            if (host !== 'localhost' && host !== '127.0.0.1') {
+              return `http://${host}:8080/api`;
+            }
+          }
+        }
+      } catch {
+        // fallback
+      }
+      return ENV.API_URL.replace('localhost', '10.0.2.2');
+    }
+
+    return ENV.API_URL;
+  }
+
   if (Platform.OS === 'android') {
-    // 10.0.2.2 routes to host machine in Android Emulator
     return 'http://10.0.2.2:8080/api';
   }
-  // iOS Simulator / macOS
   return 'http://localhost:8080/api';
 };
 
@@ -66,13 +97,27 @@ class ApiClient {
 
     const url = endpoint.startsWith('http') ? endpoint : `${baseUrl}${endpoint}`;
 
-    const response = await fetch(url, {
-      ...options,
-      headers: {
-        ...headers,
-        ...options.headers,
-      },
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+    let response: Response;
+    try {
+      response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+        headers: {
+          ...headers,
+          ...options.headers,
+        },
+      });
+    } catch (err: any) {
+      if (err.name === 'AbortError') {
+        throw new Error(`Connection timed out (${baseUrl}). Check that backend server is running and reachable.`);
+      }
+      throw new Error(`Network request failed (${url}). Is the backend server running?`);
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     const data = await response.json().catch(() => ({}));
 
