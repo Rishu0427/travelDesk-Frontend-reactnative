@@ -481,20 +481,35 @@ export const DriverHomeScreen: React.FC = () => {
             <View style={{ flex: 1 }}>
               <View style={styles.salarySlipTitleRow}>
                 <Text style={styles.salarySlipTitle}>{t.monthlySalarySlip}</Text>
-                <View style={styles.newPill}>
-                  <Text style={styles.newPillText}>{t.newBadge}</Text>
-                </View>
+                {latestSalary && (
+                  <View style={styles.newPill}>
+                    <Text style={styles.newPillText}>{t.newBadge}</Text>
+                  </View>
+                )}
               </View>
               <View style={styles.salarySlipSubRow}>
                 <Text style={styles.salarySlipAmount}>
-                  ₹
                   {latestSalary
-                    ? calculateNetPayable(latestSalary).toLocaleString()
-                    : '22,500'}
+                    ? `₹${calculateNetPayable(latestSalary).toLocaleString('en-IN')}`
+                    : profile?.salary
+                    ? `₹${profile.salary.toLocaleString('en-IN')}`
+                    : '--'}
                 </Text>
                 <Text style={styles.salarySlipDot}>•</Text>
                 <Text style={styles.salarySlipStatus} numberOfLines={1}>
-                  {monthStats.monthName} {monthStats.year} • {latestSalary ? t.readyToView : t.processing}
+                  {latestSalary
+                    ? `${monthStats.monthName} ${monthStats.year} • ${
+                        latestSalary.paymentStatus === 'PAID'
+                          ? language === 'hi'
+                            ? 'भुगतान संपन्न'
+                            : 'Paid'
+                          : language === 'hi'
+                          ? 'लंबित'
+                          : 'Pending'
+                      }`
+                    : language === 'hi'
+                    ? 'वेतन पर्ची अभी नहीं बनी है'
+                    : 'Awaiting admin generation'}
                 </Text>
               </View>
             </View>
@@ -519,18 +534,18 @@ export const DriverHomeScreen: React.FC = () => {
               <Clock size={18} color={theme.colors.primaryContainer} />
               <Text style={styles.recentSectionTitle}>{t.recentTripsExpenses}</Text>
             </View>
-            {feedItems.length > 5 && (
-              <TouchableOpacity
-                style={styles.seeAllBtn}
-                onPress={() => setShowAllFeed((prev) => !prev)}
-                activeOpacity={0.7}
-              >
-                <Text style={styles.seeAllText}>
-                  {showAllFeed ? t.showLess : t.seeAll}
-                </Text>
-                <ChevronRight size={14} color={theme.colors.primaryContainer} />
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity
+              style={styles.seeAllBtn}
+              onPress={() => {
+                const latestTrip = allTrips && allTrips.length > 0 ? allTrips[0] : null;
+                setTripToEdit(latestTrip);
+                setIsTripModalOpen(true);
+              }}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.seeAllText}>{t.seeAll}</Text>
+              <ChevronRight size={14} color={theme.colors.primaryContainer} />
+            </TouchableOpacity>
           </View>
 
           <View style={styles.feedCard}>
@@ -741,6 +756,7 @@ export const DriverHomeScreen: React.FC = () => {
         vehicles={vehicles}
         companies={companies}
         driverName={driverName}
+        driverHub="Pune Hub"
       />
 
       <AddEditExpenseModal
@@ -765,6 +781,7 @@ export const DriverHomeScreen: React.FC = () => {
       <ProfileModal
         visible={isProfileModalOpen}
         onClose={() => setIsProfileModalOpen(false)}
+        onOpenSalarySlip={() => setIsSalarySlipModalOpen(true)}
       />
     </View>
   );

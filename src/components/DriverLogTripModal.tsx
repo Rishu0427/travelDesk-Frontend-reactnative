@@ -55,6 +55,10 @@ export interface DriverLogTripModalProps {
   onAddNewCompany?: () => void;
 }
 
+const EMPTY_VEHICLES: Vehicle[] = [];
+const EMPTY_DRIVERS: Driver[] = [];
+const EMPTY_COMPANIES: Company[] = [];
+
 type TripCategory = 'local' | 'outstation' | 'airport';
 type PaymentMode = 'corporate' | 'cash' | 'upi';
 type LanguageMode = 'EN' | 'HI';
@@ -114,9 +118,9 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
   onClose,
   onSubmit,
   tripToEdit,
-  vehicles = [],
-  drivers = [],
-  companies = [],
+  vehicles = EMPTY_VEHICLES,
+  drivers = EMPTY_DRIVERS,
+  companies = EMPTY_COMPANIES,
   driverName = 'Rajesh',
   driverHub = 'Pune Hub',
   isOwner = false,
@@ -128,7 +132,7 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
   // Step 1: Trip & Cab info
   const [selectedVehicleId, setSelectedVehicleId] = useState<string>('');
   const [selectedDriverId, setSelectedDriverId] = useState<string>('');
-  const [tripCategory, setTripCategory] = useState<TripCategory>('outstation');
+  const [tripCategory, setTripCategory] = useState<TripCategory>('local');
   const [selectedCompanyId, setSelectedCompanyId] = useState<string>('');
   const [customCompanyName, setCustomCompanyName] = useState<string>('');
   const [isPrivateCustomer, setIsPrivateCustomer] = useState<boolean>(false);
@@ -157,6 +161,8 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
   const [activePicker, setActivePicker] = useState<'vehicle' | 'driver' | 'company' | null>(null);
   const [pickerSearch, setPickerSearch] = useState<string>('');
   const successTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevVisibleRef = useRef<boolean>(false);
+  const lastTripIdRef = useRef<string | null>(null);
 
   // Cleanup timers on unmount
   useEffect(() => {
@@ -180,6 +186,8 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
   // Populate data and reset loading when visible changes
   useEffect(() => {
     if (!visible) {
+      prevVisibleRef.current = false;
+      lastTripIdRef.current = null;
       if (successTimerRef.current) {
         clearTimeout(successTimerRef.current);
       }
@@ -187,6 +195,14 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
       setIsSuccess(false);
       return;
     }
+
+    const currentTripId = tripToEdit?.id || 'new';
+    // Only re-initialize when modal just opened or tripToEdit changed
+    if (prevVisibleRef.current && lastTripIdRef.current === currentTripId) {
+      return;
+    }
+    prevVisibleRef.current = true;
+    lastTripIdRef.current = currentTripId;
 
     setLoading(false);
     setIsSuccess(false);
@@ -209,7 +225,7 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
       const meta = parseTripMetadata(tripToEdit.notes);
       setPickupLocation(meta.pickupLocation || 'Shivajinagar, Pune');
       setDropLocation(meta.dropLocation || 'Mumbai International Airport T2');
-      setTripCategory(meta.tripCategory || 'outstation');
+      setTripCategory(meta.tripCategory || 'local');
       setStartKm(meta.startKm || '45210');
       setEndKm(meta.endKm || '45234');
       setPaymentMode(meta.paymentMode || 'corporate');
@@ -227,7 +243,7 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
       setSelectedCompanyId(firstCompany);
       setCustomCompanyName(companies[0]?.name || 'Infosys Hinjawadi (Phase 2)');
       setIsPrivateCustomer(false);
-      setTripCategory('outstation');
+      setTripCategory('local');
       setPickupLocation('Shivajinagar, Pune');
       setDropLocation('Mumbai International Airport T2');
       setTotalKm('24');
@@ -241,7 +257,7 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
       setEndPhotoAttached(false);
       setShowOdometerDetails(false);
     }
-  }, [visible, tripToEdit, vehicles, drivers, companies]);
+  }, [visible, tripToEdit]);
 
   // Recalculate distance
   const handleOdometerChange = (newStart: string, newEnd: string) => {
@@ -409,9 +425,7 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
                 <ArrowLeft size={20} color="#191b23" />
               </TouchableOpacity>
               <Text style={styles.appBarTitle}>
-                {tripToEdit
-                  ? (lang === 'HI' ? 'ट्रिप में बदलाव करें' : 'Edit Trip')
-                  : (lang === 'HI' ? 'ट्रिप जोड़ें' : 'Add Trips')}
+                {lang === 'HI' ? 'ट्रिप विवरण' : 'Trip Details'}
               </Text>
             </View>
 
@@ -443,21 +457,19 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
           >
             <View style={styles.centerContainer}>
               {/* Driver Greeting & Shift Status Banner */}
-              {/* <View style={styles.shiftBanner}>
+              <View style={styles.shiftBanner}>
                 <View style={styles.shiftBannerLeft}>
                   <View style={styles.shiftIconWrap}>
                     <Truck size={24} color="#ffffff" />
                   </View>
                   <View style={{ flex: 1 }}>
                     <Text style={styles.shiftTag}>
-                      {lang === 'HI'
-                        ? (isOwner ? 'फ्लीट ऑपरेशन्स डिस्पैच' : 'फ्लीटमेट एक्टिव शिफ्ट')
-                        : (isOwner ? 'FLEET OPERATIONS DISPATCH' : 'FLEETMATE ACTIVE SHIFT')}
+                      {lang === 'HI' ? 'फ्लीटमेट एक्टिव शिफ्ट' : 'FLEETMATE ACTIVE SHIFT'}
                     </Text>
                     <Text style={styles.shiftGreeting}>
                       {lang === 'HI'
-                        ? `नमस्ते, ${isOwner ? (activeDriver?.name || driverName || 'राजेश') : driverName} 👋`
-                        : `Namaste, ${isOwner ? (activeDriver?.name || driverName || 'Rajesh') : driverName} 👋`}
+                        ? `नमस्ते, ${driverName || 'राजेश'} 👋`
+                        : `Namaste, ${driverName || 'Rajesh'} 👋`}
                     </Text>
                   </View>
                 </View>
@@ -466,12 +478,12 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
                   <View style={styles.onDutyBadge}>
                     <View style={styles.dutyPulseDot} />
                     <Text style={styles.dutyText}>
-                      {lang === 'HI' ? (isOwner ? 'डिस्पैच एक्टिव' : 'ऑन ड्यूटी') : (isOwner ? 'Active' : 'On Duty')}
+                      {lang === 'HI' ? 'ऑन ड्यूटी' : 'On Duty'}
                     </Text>
                   </View>
-                  <Text style={styles.hubText}>{driverHub}</Text>
+                  <Text style={styles.hubText}>{driverHub || 'Pune Hub'}</Text>
                 </View>
-              </View> */}
+              </View>
 
               {/* CARD 1: Trip Information - Step 1 of 2 */}
               <View style={styles.card}>
@@ -495,19 +507,17 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
                     <Text style={styles.fieldLabel}>
                       {lang === 'HI' ? 'असाइन किया गया वाहन' : 'Assigned Cab'}
                     </Text>
-                    {vehicles.length > 0 && (
-                      <TouchableOpacity
-                        onPress={() => {
-                          setPickerSearch('');
-                          setActivePicker('vehicle');
-                        }}
-                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                      >
-                        <Text style={styles.changeLinkText}>
-                          {lang === 'HI' ? 'बदलें' : 'Change'}
-                        </Text>
-                      </TouchableOpacity>
-                    )}
+                    <TouchableOpacity
+                      onPress={() => {
+                        setPickerSearch('');
+                        setActivePicker('vehicle');
+                      }}
+                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    >
+                      <Text style={styles.changeLinkText}>
+                        {lang === 'HI' ? 'बदलें' : 'Change'}
+                      </Text>
+                    </TouchableOpacity>
                   </View>
 
                   <TouchableOpacity
@@ -794,93 +804,6 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
                       : 'Enter total kilometers logged for this local trip assignment'}
                   </Text>
                 </View>
-
-                {/* Collapsible Odometer Readings & Photos (Optional) */}
-                <TouchableOpacity
-                  style={styles.odometerToggleBtn}
-                  activeOpacity={0.7}
-                  onPress={() => setShowOdometerDetails(!showOdometerDetails)}
-                >
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                    <Camera size={14} color="#004ac6" />
-                    <Text style={styles.odometerToggleText}>
-                      {showOdometerDetails
-                        ? (lang === 'HI' ? 'ओडोमीटर विवरण छुपाएं' : 'Hide Odometer & Photos')
-                        : (lang === 'HI' ? 'ओडोमीटर रीडिंग और फोटो (ऐच्छिक)' : 'Odometer Readings & Photos (Optional)')}
-                    </Text>
-                  </View>
-                  {showOdometerDetails ? (
-                    <ChevronUp size={16} color="#004ac6" />
-                  ) : (
-                    <ChevronDown size={16} color="#004ac6" />
-                  )}
-                </TouchableOpacity>
-
-                {showOdometerDetails && (
-                  <View style={styles.odometerGrid}>
-                    {/* Start KM */}
-                    <View style={styles.odometerCol}>
-                      <Text style={styles.inputMiniLabel}>
-                        {lang === 'HI' ? 'शुरुआती किमी' : 'Start Km'}
-                      </Text>
-                      <View style={styles.odometerBox}>
-                        <TextInput
-                          style={styles.odometerInput}
-                          value={startKm}
-                          onChangeText={(val) => handleOdometerChange(val, endKm)}
-                          placeholder="00000"
-                          placeholderTextColor="#737686"
-                          keyboardType="numeric"
-                        />
-                        <TouchableOpacity
-                          style={styles.odometerPhotoBar}
-                          activeOpacity={0.8}
-                          onPress={() => handleCapturePhoto('start')}
-                        >
-                          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                            <CheckCircle2 size={13} color="#006c49" />
-                            <Text style={styles.odometerPhotoText}>
-                              {startPhotoAttached ? 'Verified' : 'Attach'}
-                            </Text>
-                          </View>
-                          <Camera size={13} color="#004ac6" />
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-
-                    {/* End KM */}
-                    <View style={styles.odometerCol}>
-                      <Text style={styles.inputMiniLabel}>
-                        {lang === 'HI' ? 'अंतिम किमी' : 'End Km'}
-                      </Text>
-                      <View style={styles.odometerBox}>
-                        <TextInput
-                          style={[styles.odometerInput, { color: '#004ac6' }]}
-                          value={endKm}
-                          onChangeText={(val) => handleOdometerChange(startKm, val)}
-                          placeholder="00000"
-                          placeholderTextColor="#737686"
-                          keyboardType="numeric"
-                        />
-                        <TouchableOpacity
-                          style={[
-                            styles.odometerPhotoBar,
-                            { backgroundColor: 'rgba(37, 99, 235, 0.08)' },
-                          ]}
-                          activeOpacity={0.8}
-                          onPress={() => handleCapturePhoto('end')}
-                        >
-                          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                            <Camera size={13} color="#004ac6" />
-                            <Text style={[styles.odometerPhotoText, { color: '#004ac6' }]}>
-                              {endPhotoAttached ? 'Attached' : '+ Photo'}
-                            </Text>
-                          </View>
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-                  </View>
-                )}
               </View>
 
               {/* CARD 3: Billing & Notes */}
@@ -1064,9 +987,7 @@ export const DriverLogTripModal: React.FC<DriverLogTripModalProps> = ({
                     <View style={styles.btnContentRow}>
                       <CheckCircle2 size={22} color="#ffffff" />
                       <Text style={styles.submitBtnText}>
-                        {tripToEdit
-                          ? (lang === 'HI' ? 'बदलाव सुरक्षित करें' : 'Save Changes')
-                          : (lang === 'HI' ? 'ट्रिप समाप्त करें' : 'Complete Trip')}
+                        {lang === 'HI' ? 'ट्रिप समाप्त करें' : 'Complete Trip'}
                       </Text>
                     </View>
                   )}
