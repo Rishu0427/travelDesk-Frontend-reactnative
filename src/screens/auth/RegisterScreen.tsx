@@ -461,16 +461,14 @@ const styles = StyleSheet.create({
   inputWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: theme.colors.surface,
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
-    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.surfaceLow,
+    borderRadius: theme.radius.lg,
     paddingHorizontal: 14,
     height: 48,
   },
   inputWrapError: {
-    borderColor: theme.colors.error,
     borderWidth: 1.5,
+    borderColor: theme.colors.error,
     backgroundColor: '#fffbfa',
   },
   requiredStar: {
@@ -509,7 +507,7 @@ const styles = StyleSheet.create({
     color: theme.colors.onSurface,
   },
   primaryBtn: {
-    height: 48,
+    height: 56,
     backgroundColor: theme.colors.primaryContainer,
     borderRadius: theme.radius.lg,
     alignItems: 'center',

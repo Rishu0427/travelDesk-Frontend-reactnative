@@ -381,13 +381,11 @@ const styles = StyleSheet.create({
   inputWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
-    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.surfaceLow,
+    borderRadius: theme.radius.lg,
     paddingHorizontal: 12,
     height: 48,
     marginBottom: 4,
-    backgroundColor: theme.colors.surface,
   },
   icon: {
     marginRight: 8,
@@ -416,18 +414,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 8,
     paddingVertical: 10,
-    borderRadius: theme.radius.md,
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
-    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.lg,
+    backgroundColor: theme.colors.surfaceLow,
   },
   statusBtnActive: {
     backgroundColor: theme.colors.primaryContainer,
-    borderColor: theme.colors.primaryContainer,
   },
   statusBtnInactive: {
     backgroundColor: 'rgba(239, 68, 68, 0.08)',
-    borderColor: theme.colors.error,
   },
   statusBtnText: {
     ...theme.typography.bodyMd,
@@ -444,7 +438,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   submitBtn: {
-    height: 50,
+    height: 56,
     backgroundColor: theme.colors.primaryContainer,
     borderRadius: theme.radius.lg,
     alignItems: 'center',

@@ -24,6 +24,7 @@ import {
   Briefcase,
   Sparkles,
 } from 'lucide-react-native';
+import { DriverLogTripModal } from './DriverLogTripModal';
 
 interface AddEditTripModalProps {
   visible: boolean;
@@ -39,7 +40,7 @@ interface AddEditTripModalProps {
 
 const EMPTY_ARRAY: any[] = [];
 
-export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
+const OwnerAddEditTripModal: React.FC<AddEditTripModalProps> = ({
   visible,
   onClose,
   onSubmit,
@@ -394,6 +395,22 @@ export const AddEditTripModal: React.FC<AddEditTripModalProps> = ({
         </View>
       </View>
     </Modal>
+  );
+};
+
+export const AddEditTripModal: React.FC<AddEditTripModalProps> = (props) => {
+  return (
+    <DriverLogTripModal
+      visible={props.visible}
+      onClose={props.onClose}
+      onSubmit={props.onSubmit}
+      tripToEdit={props.tripToEdit}
+      vehicles={props.vehicles}
+      drivers={props.drivers}
+      companies={props.companies}
+      isOwner={props.isOwner}
+      onAddNewCompany={props.onAddNewCompany}
+    />
   );
 };
 

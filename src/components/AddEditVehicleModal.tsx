@@ -244,9 +244,8 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   inputWrap: {
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
-    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.surfaceLow,
+    borderRadius: theme.radius.lg,
     paddingHorizontal: 14,
     height: 48,
     justifyContent: 'center',
@@ -265,13 +264,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 10,
     alignItems: 'center',
-    borderRadius: theme.radius.md,
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
+    borderRadius: theme.radius.lg,
+    backgroundColor: theme.colors.surfaceLow,
   },
   segmentBtnActive: {
     backgroundColor: theme.colors.primaryContainer,
-    borderColor: theme.colors.primaryContainer,
   },
   segmentText: {
     ...theme.typography.labelMd,
@@ -304,7 +301,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   submitBtn: {
-    height: 48,
+    height: 56,
     backgroundColor: theme.colors.primaryContainer,
     borderRadius: theme.radius.lg,
     alignItems: 'center',

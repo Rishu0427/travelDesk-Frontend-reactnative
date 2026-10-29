@@ -13,10 +13,10 @@ import { api } from '../../api/client';
 import { theme } from '../../constants/theme';
 import type { Vehicle, Driver } from '../../types';
 import { AddEditVehicleModal } from '../../components/AddEditVehicleModal';
-import { Car, Plus, Edit2, Trash2, Users, Fuel, Sparkles } from 'lucide-react-native';
+import { Car, Plus, Edit2, Trash2, Users, Fuel, Sparkles, Navigation as NavIcon } from 'lucide-react-native';
 import { confirmAction } from '../../utils/alert';
 
-export const OwnerVehiclesScreen: React.FC = () => {
+export const OwnerVehiclesScreen: React.FC<{ navigation?: any }> = ({ navigation }) => {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [drivers, setDrivers] = useState<Driver[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -175,6 +175,14 @@ export const OwnerVehiclesScreen: React.FC = () => {
                   </View>
 
                   <View style={styles.actions}>
+                    <TouchableOpacity
+                      style={styles.actionBtn}
+                      onPress={() => navigation?.navigate?.('TripsExpenses', { vehicleId: v.id })}
+                    >
+                      <NavIcon size={14} color={theme.colors.secondary} />
+                      <Text style={[styles.actionText, { color: theme.colors.secondary }]}>Trips & Fuel</Text>
+                    </TouchableOpacity>
+
                     <TouchableOpacity
                       style={styles.actionBtn}
                       onPress={() => {

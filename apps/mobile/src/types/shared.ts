@@ -4,7 +4,7 @@ export type FuelType = 'CNG' | 'PETROL' | 'DIESEL' | 'EV';
 
 export type DriverStatus = 'ACTIVE' | 'INACTIVE';
 
-export type ExpenseCategory = 'CNG' | 'PETROL' | 'OTHER' | 'TOLL' | 'PARKING' | 'MAINTENANCE' | 'DRIVER_EXPENSE';
+export type ExpenseCategory = 'CNG' | 'PETROL' | 'DIESEL' | 'OTHER' | 'TOLL' | 'PARKING' | 'MAINTENANCE' | 'DRIVER_EXPENSE';
 
 export type AttendanceType = 'PRESENT' | 'LEAVE' | 'HALF_DAY';
 
@@ -16,6 +16,7 @@ export interface User {
   email: string;
   role: Role;
   phone?: string | null;
+  mobile?: string | null;
   ownerId?: string | null;
 }
 

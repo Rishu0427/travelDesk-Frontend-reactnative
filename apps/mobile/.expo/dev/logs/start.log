@@ -903,3 +903,190 @@
 {"_e":"metro:config","_t":1793270294835,"serverRoot":"../../../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":true,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
 {"_e":"expo:dev-tools-plugin:load","_t":1793270294911,"plugins":[]}
 {"_e":"metro:instantiate","_t":1793270295266,"atlas":false,"workers":7,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1793270314509,"id":"1","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793270314509,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1793270314511,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1793270314842,"id":"1","progress":0.010000000000000002,"total":1,"current":1}
+{"_e":"metro:bundling:progress","_t":1793270314942,"id":"1","progress":0.25,"total":26,"current":13}
+{"_e":"metro:bundling:progress","_t":1793270315050,"id":"1","progress":0.35354273192111035,"total":37,"current":22}
+{"_e":"metro:bundling:progress","_t":1793270315156,"id":"1","progress":0.35354273192111035,"total":49,"current":29}
+{"_e":"metro:bundling:progress","_t":1793270315210,"id":"1","progress":0.35354273192111035,"total":49,"current":29}
+{"_e":"metro:bundling:progress","_t":1793270315256,"id":"1","progress":0.3721,"total":100,"current":61}
+{"_e":"metro:bundling:progress","_t":1793270315356,"id":"1","progress":0.48071111111111114,"total":150,"current":104}
+{"_e":"metro:bundling:progress","_t":1793270315458,"id":"1","progress":0.48071111111111114,"total":193,"current":132}
+{"_e":"metro:bundling:progress","_t":1793270315559,"id":"1","progress":0.48071111111111114,"total":258,"current":164}
+{"_e":"metro:bundling:progress","_t":1793270315660,"id":"1","progress":0.48071111111111114,"total":281,"current":181}
+{"_e":"metro:bundling:progress","_t":1793270315761,"id":"1","progress":0.5013400297283906,"total":298,"current":211}
+{"_e":"metro:bundling:progress","_t":1793270315862,"id":"1","progress":0.5511937557392103,"total":330,"current":245}
+{"_e":"metro:bundling:progress","_t":1793270315962,"id":"1","progress":0.5511937557392103,"total":385,"current":260}
+{"_e":"metro:bundling:progress","_t":1793270316062,"id":"1","progress":0.5511937557392103,"total":415,"current":296}
+{"_e":"metro:bundling:progress","_t":1793270316162,"id":"1","progress":0.6578181740958611,"total":434,"current":352}
+{"_e":"metro:bundling:progress","_t":1793270316263,"id":"1","progress":0.784598877824019,"total":464,"current":411}
+{"_e":"metro:bundling:progress","_t":1793270316405,"id":"1","progress":0.8138343141693073,"total":470,"current":424}
+{"_e":"metro:bundling:progress","_t":1793270316525,"id":"1","progress":0.8138343141693073,"total":2266,"current":425}
+{"_e":"metro:bundling:progress","_t":1793270316625,"id":"1","progress":0.8138343141693073,"total":2311,"current":460}
+{"_e":"metro:bundling:progress","_t":1793270316727,"id":"1","progress":0.8138343141693073,"total":2315,"current":514}
+{"_e":"metro:bundling:progress","_t":1793270316830,"id":"1","progress":0.8138343141693073,"total":2315,"current":592}
+{"_e":"metro:bundling:progress","_t":1793270316930,"id":"1","progress":0.8138343141693073,"total":2327,"current":709}
+{"_e":"metro:bundling:progress","_t":1793270317030,"id":"1","progress":0.8138343141693073,"total":2327,"current":819}
+{"_e":"metro:bundling:progress","_t":1793270317130,"id":"1","progress":0.8138343141693073,"total":2327,"current":953}
+{"_e":"metro:bundling:progress","_t":1793270317230,"id":"1","progress":0.8138343141693073,"total":2327,"current":1090}
+{"_e":"metro:bundling:progress","_t":1793270317331,"id":"1","progress":0.8138343141693073,"total":2327,"current":1209}
+{"_e":"metro:bundling:progress","_t":1793270317452,"id":"1","progress":0.8138343141693073,"total":2327,"current":1271}
+{"_e":"metro:bundling:progress","_t":1793270317552,"id":"1","progress":0.8138343141693073,"total":2328,"current":1427}
+{"_e":"metro:bundling:progress","_t":1793270317661,"id":"1","progress":0.8138343141693073,"total":2328,"current":1516}
+{"_e":"metro:bundling:progress","_t":1793270317760,"id":"1","progress":0.8138343141693073,"total":2328,"current":1673}
+{"_e":"metro:bundling:progress","_t":1793270317860,"id":"1","progress":0.8138343141693073,"total":2328,"current":1833}
+{"_e":"metro:bundling:progress","_t":1793270317960,"id":"1","progress":0.8138343141693073,"total":2328,"current":1944}
+{"_e":"metro:bundling:progress","_t":1793270318060,"id":"1","progress":0.8138343141693073,"total":2328,"current":2087}
+{"_e":"metro:bundling:progress","_t":1793270318160,"id":"1","progress":0.9118281034116272,"total":2328,"current":2223}
+{"_e":"metro:bundling:progress","_t":1793270318261,"id":"1","progress":0.9559749718521298,"total":2336,"current":2284}
+{"_e":"metro:bundling:progress","_t":1793270318361,"id":"1","progress":0.9824601439687403,"total":2384,"current":2363}
+{"_e":"metro:bundling:progress","_t":1793270318461,"id":"1","progress":0.9983395602697541,"total":2408,"current":2406}
+{"_e":"metro:bundling:done","_t":1793270318605,"id":"1","total":2408,"ms":4095.6755}
+{"_e":"metro:bundling:started","_t":1793270318929,"id":"3","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793270318988,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793273442129,"id":"4","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793273442131,"id":"5","platform":"web","environment":null,"entry":"apps/mobile/src/screens/driver/DriverHomeScreen.tsx"}
+{"_e":"metro:bundling:started","_t":1793273484263,"id":"6","platform":"web","environment":null,"entry":"apps/mobile/src/components/AddEditTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793273801453,"id":"8","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793273801453,"id":"8","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793273801496,"id":"8","total":1,"ms":42.797333}
+{"_e":"metro:bundling:started","_t":1793273801770,"id":"9","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793273801825,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793274499668,"id":"a","platform":"web","environment":null,"entry":"apps/mobile/src/screens/owner/OwnerTripsExpensesScreen.tsx"}
+{"_e":"metro:bundling:started","_t":1793274603471,"id":"c","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793274603471,"id":"c","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793274603538,"id":"c","total":1,"ms":66.984125}
+{"_e":"metro:bundling:started","_t":1793274603820,"id":"d","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793274603875,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"root:init","_t":1793277967585,"format":"v0-jsonl","version":"57.0.20"}
+{"_e":"env:mode","_t":1793277967585,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1793277967587,"mode":"development","files":["../../../.env"],"env":{"EXPO_PUBLIC_API_URL":"http://localhost:8080/api","EXPO_PUBLIC_APP_ENV":"development"}}
+{"_e":"devserver:start","_t":1793277967770,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../../../app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1793277968263,"serverRoot":"../../../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":true,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1793277968334,"plugins":[]}
+{"_e":"metro:instantiate","_t":1793277968687,"atlas":false,"workers":7,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1793277971538,"id":"2","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793277971538,"id":"2","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1793277971540,"id":"2","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1793277971640,"id":"2","progress":0.3689437585733882,"total":270,"current":164}
+{"_e":"metro:bundling:progress","_t":1793277971755,"id":"2","progress":0.40649057977100306,"total":378,"current":241}
+{"_e":"metro:bundling:progress","_t":1793277971855,"id":"2","progress":0.40649057977100306,"total":2176,"current":248}
+{"_e":"metro:bundling:progress","_t":1793277971955,"id":"2","progress":0.40649057977100306,"total":2231,"current":620}
+{"_e":"metro:bundling:progress","_t":1793277972059,"id":"2","progress":0.9312985334999812,"total":2231,"current":2153}
+{"_e":"metro:bundling:progress","_t":1793277972099,"id":"2","progress":0.9312985334999812,"total":2231,"current":2153}
+{"_e":"metro:bundling:progress","_t":1793277972174,"id":"2","progress":0.9563994270497429,"total":2359,"current":2307}
+{"_e":"metro:bundling:progress","_t":1793277972275,"id":"2","progress":0.9975088238862934,"total":2407,"current":2404}
+{"_e":"metro:bundling:progress","_t":1793277972376,"id":"2","progress":0.999,"total":2409,"current":2408}
+{"_e":"metro:bundling:done","_t":1793277972484,"id":"2","total":2409,"ms":946.722584}
+{"_e":"metro:bundling:started","_t":1793277972776,"id":"3","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793277972834,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793277983694,"id":"5","platform":"web","environment":null,"entry":"apps/mobile/src/screens/auth/RegisterScreen.tsx"}
+{"_e":"metro:bundling:started","_t":1793281853053,"id":"6","platform":"web","environment":null,"entry":"apps/mobile/src/screens/driver/DriverHomeScreen.tsx"}
+{"_e":"metro:bundling:started","_t":1793281994464,"id":"8","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793281994465,"id":"8","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793281994511,"id":"8","total":1,"ms":46.138667}
+{"_e":"metro:bundling:started","_t":1793281994796,"id":"9","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793281994871,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793282338720,"id":"a","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793282557735,"id":"b","platform":"web","environment":null,"entry":"apps/mobile/src/components/SalarySlipModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793282598541,"id":"c","platform":"web","environment":null,"entry":"apps/mobile/src/screens/driver/DriverHomeScreen.tsx"}
+{"_e":"metro:bundling:started","_t":1793282661361,"id":"d","platform":"web","environment":null,"entry":"apps/mobile/src/screens/driver/DriverHomeScreen.tsx"}
+{"_e":"metro:bundling:started","_t":1793282668947,"id":"e","platform":"web","environment":null,"entry":"apps/mobile/src/screens/driver/DriverHomeScreen.tsx"}
+{"_e":"metro:bundling:started","_t":1793282691900,"id":"g","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793282691900,"id":"g","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793282691951,"id":"g","total":1,"ms":50.290375}
+{"_e":"metro:bundling:started","_t":1793282692119,"id":"h","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793282692274,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1793282692274,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793282716346,"id":"j","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793282716346,"id":"j","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793282716383,"id":"j","total":1,"ms":36.546625}
+{"_e":"metro:bundling:started","_t":1793282716543,"id":"k","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793282716732,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1793282716732,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793282818772,"id":"m","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793282818773,"id":"m","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793282818819,"id":"m","total":1,"ms":46.116666}
+{"_e":"metro:bundling:started","_t":1793282818980,"id":"n","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793282819154,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1793282819154,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793282946203,"id":"o","platform":"web","environment":null,"entry":"apps/mobile/src/components/AddEditExpenseModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793282966614,"id":"p","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:client_log","_t":1793283012766,"level":"error","data":["Internal React error: Expected static flag was missing. Please notify the React team.","\n\n\u001b[1mCode: setupHMR.ts\u001b[22m\n\u001b[0m \u001b[90m 79 |\u001b[39m \u001b[36mfunction\u001b[39m captureCurrentStack() {\n \u001b[90m 80 |\u001b[39m   \u001b[90m// If you're reading this, look deeper into the call stack to find the actual error source.\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 81 |\u001b[39m   \u001b[36mreturn\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mNamelessError\u001b[39m()\u001b[33m.\u001b[39mstack\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 82 |\u001b[39m }\n \u001b[90m 83 |\u001b[39m\u001b[0m\n\u001b[1mCall Stack\u001b[22m\n\u001b[2m\u001b[90m  captureCurrentStack (\u001b]8;;node_modules/expo/src/async-require/setupHMR.ts:81:10\u0007node_modules/expo/src/async-require/setupHMR.ts:81:10\u001b]8;;\u0007)\u001b[39m\u001b[22m\n\u001b[2m\u001b[90m  addErrorStacks (\u001b]8;;node_modules/expo/src/async-require/setupHMR.ts:59:19\u0007node_modules/expo/src/async-require/setupHMR.ts:59:19\u001b]8;;\u0007)\u001b[39m\u001b[22m\n\u001b[2m\u001b[90m  console.level (\u001b]8;;node_modules/expo/src/async-require/setupHMR.ts:22:48\u0007node_modules/expo/src/async-require/setupHMR.ts:22:48\u001b]8;;\u0007)\u001b[39m\u001b[22m\n\u001b[2m\u001b[90m  finishRenderingHooks (\u001b]8;;node_modules/react-dom/cjs/react-dom-client.development.js:7710:17\u0007node_modules/react-dom/cjs/react-dom-client.development.js:7710:17\u001b]8;;\u0007)\u001b[39m\u001b[22m\n\u001b[2m\u001b[90m  renderWithHooks (\u001b]8;;node_modules/react-dom/cjs/react-dom-client.development.js:7684:7\u0007node_modules/react-dom/cjs/react-dom-client.development.js:7684:7\u001b]8;;\u0007)\u001b[39m\u001b[22m\n\u001b[2m\u001b[90m  updateFunctionComponent (\u001b]8;;node_modules/react-dom/cjs/react-dom-client.development.js:10166:19\u0007node_modules/react-dom/cjs/react-dom-client.development.js:10166:19\u001b]8;;\u0007)\u001b[39m\u001b[22m\n\u001b[2m\u001b[90m  beginWork (\u001b]8;;node_modules/react-dom/cjs/react-dom-client.development.js:11778:18\u0007node_modules/react-dom/cjs/react-dom-client.development.js:11778:18\u001b]8;;\u0007)\u001b[39m\u001b[22m\n\u001b[2m\u001b[90m  runWithFiberInDEV (\u001b]8;;node_modules/react-dom/cjs/react-dom-client.development.js:871:30\u0007node_modules/react-dom/cjs/react-dom-client.development.js:871:30\u001b]8;;\u0007)\u001b[39m\u001b[22m\n\u001b[2m\u001b[90m  performUnitOfWork (\u001b]8;;node_modules/react-dom/cjs/react-dom-client.development.js:17641:22\u0007node_modules/react-dom/cjs/react-dom-client.development.js:17641:22\u001b]8;;\u0007)\u001b[39m\u001b[22m\n\u001b[2m\u001b[90m  workLoopSync (\u001b]8;;node_modules/react-dom/cjs/react-dom-client.development.js:17469:41\u0007node_modules/react-dom/cjs/react-dom-client.development.js:17469:41\u001b]8;;\u0007)\u001b[39m\u001b[22m","\n\n\u001b[1mCode: DriverHomeScreen.tsx\u001b[22m\n\u001b[0m \u001b[90m 731 |\u001b[39m\n \u001b[90m 732 |\u001b[39m       {\u001b[90m/* ── Modals ─────────────────────────────────────────────────────────── */\u001b[39m}\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 733 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33mDriverLogTripModal\u001b[39m\n \u001b[90m     |\u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 734 |\u001b[39m         visible\u001b[33m=\u001b[39m{isTripModalOpen}\n \u001b[90m 735 |\u001b[39m         onClose\u001b[33m=\u001b[39m{() \u001b[33m=>\u001b[39m setIsTripModalOpen(\u001b[36mfalse\u001b[39m)}\n \u001b[90m 736 |\u001b[39m         onSubmit\u001b[33m=\u001b[39m{handleSaveTrip}\u001b[0m\n\u001b[1mCall Stack\u001b[22m\n\u001b[90m  DriverHomeScreen (\u001b]8;;apps/mobile/src/screens/driver/DriverHomeScreen.tsx:733:7\u0007apps/mobile/src/screens/driver/DriverHomeScreen.tsx:733:7\u001b]8;;\u0007)\u001b[39m\n\u001b[90m  RootNavigator (\u001b]8;;apps/mobile/src/navigation/RootNavigator.tsx:27:7\u0007apps/mobile/src/navigation/RootNavigator.tsx:27:7\u001b]8;;\u0007)\u001b[39m\n\u001b[90m  App (\u001b]8;;apps/mobile/App.tsx:16:9\u0007apps/mobile/App.tsx:16:9\u001b]8;;\u0007)\u001b[39m"]}
+{"_e":"metro:bundling:started","_t":1793283295519,"id":"s","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793283300451,"id":"t","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793283411996,"id":"u","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793283411996,"id":"u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793283412036,"id":"u","total":1,"ms":40.032834}
+{"_e":"metro:bundling:started","_t":1793283412318,"id":"w","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793283412371,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"root:init","_t":1793283432609,"format":"v0-jsonl","version":"57.0.20"}
+{"_e":"env:mode","_t":1793283432609,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1793283432611,"mode":"development","files":["../../../.env"],"env":{"EXPO_PUBLIC_API_URL":"http://localhost:8080/api","EXPO_PUBLIC_APP_ENV":"development"}}
+{"_e":"devserver:start","_t":1793283432822,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../../../app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1793283433348,"serverRoot":"../../../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":true,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1793283433435,"plugins":[]}
+{"_e":"metro:instantiate","_t":1793283433775,"atlas":false,"workers":7,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1793283435658,"id":"1","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793283435659,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1793283435661,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1793283435760,"id":"1","progress":0.4003438016528925,"total":275,"current":174}
+{"_e":"metro:bundling:progress","_t":1793283435890,"id":"1","progress":0.4003438016528925,"total":2179,"current":254}
+{"_e":"metro:bundling:progress","_t":1793283435990,"id":"1","progress":0.4003438016528925,"total":2241,"current":383}
+{"_e":"metro:bundling:progress","_t":1793283436082,"id":"1","progress":0.4003438016528925,"total":2241,"current":383}
+{"_e":"metro:bundling:progress","_t":1793283436091,"id":"1","progress":0.9526495041992512,"total":2337,"current":2281}
+{"_e":"metro:bundling:done","_t":1793283436185,"id":"1","total":2337,"ms":526.634417}
+{"_e":"metro:client_log","_t":1793283436407,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1793283436408,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793283438550,"id":"4","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:started","_t":1793283496084,"id":"5","platform":"web","environment":null,"entry":"apps/mobile/src/components/AddEditExpenseModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793283577639,"id":"6","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793283582388,"id":"7","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793283588102,"id":"8","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793283722525,"id":"9","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793283736422,"id":"a","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793283736423,"id":"a","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793283736466,"id":"a","total":1,"ms":43.395125}
+{"_e":"metro:bundling:started","_t":1793283736749,"id":"c","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793283736804,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793293059413,"id":"d","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793293059414,"id":"d","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793293059466,"id":"d","total":1,"ms":52.620333}
+{"_e":"metro:bundling:started","_t":1793293059765,"id":"f","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793293059818,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793293112875,"id":"h","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793293223349,"id":"j","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793293223350,"id":"j","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793293223397,"id":"j","total":1,"ms":47.742041}
+{"_e":"metro:bundling:started","_t":1793293223666,"id":"k","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793293223719,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793293263703,"id":"l","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793293282141,"id":"m","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793293292853,"id":"n","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"metro:bundling:started","_t":1793293296574,"id":"p","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793293296574,"id":"p","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1793293296613,"id":"p","total":1,"ms":38.574375}
+{"_e":"metro:bundling:started","_t":1793293296886,"id":"q","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:client_log","_t":1793293296941,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1793293300212,"id":"s","platform":"web","environment":null,"entry":"apps/mobile/src/components/DriverLogTripModal.tsx"}
+{"_e":"root:init","_t":1793293322172,"format":"v0-jsonl","version":"57.0.20"}
+{"_e":"env:mode","_t":1793293322172,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1793293322174,"mode":"development","files":["../../../.env"],"env":{"EXPO_PUBLIC_API_URL":"http://localhost:8080/api","EXPO_PUBLIC_APP_ENV":"development"}}
+{"_e":"devserver:start","_t":1793293322361,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../../../app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1793293322831,"serverRoot":"../../../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":true,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1793293322904,"plugins":[]}
+{"_e":"metro:instantiate","_t":1793293323221,"atlas":false,"workers":7,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1793293324555,"id":"1","platform":"web","environment":null,"entry":"apps/mobile/index.ts"}
+{"_e":"metro:bundling:progress","_t":1793293324555,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1793293324557,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1793293324657,"id":"1","progress":0.38062625682275214,"total":295,"current":182}
+{"_e":"metro:bundling:progress","_t":1793293324757,"id":"1","progress":0.38062625682275214,"total":969,"current":247}
+{"_e":"metro:bundling:progress","_t":1793293324858,"id":"1","progress":0.38062625682275214,"total":2222,"current":357}
+{"_e":"metro:bundling:progress","_t":1793293324958,"id":"1","progress":0.47986094889790204,"total":2239,"current":1551}
+{"_e":"metro:bundling:progress","_t":1793293325031,"id":"1","progress":0.47986094889790204,"total":2239,"current":1551}
+{"_e":"metro:bundling:progress","_t":1793293325058,"id":"1","progress":0.9891554503233494,"total":2391,"current":2378}
+{"_e":"metro:bundling:done","_t":1793293325126,"id":"1","total":2391,"ms":571.339625}
+{"_e":"metro:client_log","_t":1793293325346,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1793293325346,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}

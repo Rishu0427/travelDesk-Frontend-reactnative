@@ -1414,9 +1414,8 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   modalInput: {
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
-    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.surfaceLow,
+    borderRadius: theme.radius.lg,
     paddingHorizontal: 12,
     paddingVertical: 10,
     ...theme.typography.bodyLg,
@@ -1453,13 +1452,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 10,
     alignItems: 'center',
-    borderRadius: theme.radius.md,
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
+    borderRadius: theme.radius.lg,
+    backgroundColor: theme.colors.surfaceLow,
   },
   typeBtnActive: {
     backgroundColor: theme.colors.primaryContainer,
-    borderColor: theme.colors.primaryContainer,
   },
   typeText: {
     ...theme.typography.labelMd,
@@ -1496,7 +1493,7 @@ const styles = StyleSheet.create({
     color: theme.colors.secondary,
   },
   submitBtn: {
-    height: 48,
+    height: 56,
     backgroundColor: theme.colors.primaryContainer,
     borderRadius: theme.radius.lg,
     alignItems: 'center',
