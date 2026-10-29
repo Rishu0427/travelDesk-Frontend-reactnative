@@ -30,7 +30,7 @@ export const RootNavigator: React.FC = () => {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
           </>
-        ) : user.role === 'OWNER' ? (
+        ) : user.role === 'OWNER' || user.role === 'ADMIN' ? (
           <Stack.Screen name="OwnerApp" component={OwnerTabNavigator} />
         ) : (
           <Stack.Screen name="DriverApp" component={DriverHomeScreen} />

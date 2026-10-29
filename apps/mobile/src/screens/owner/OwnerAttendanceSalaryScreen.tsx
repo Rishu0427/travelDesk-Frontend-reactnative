@@ -17,6 +17,7 @@ import { api } from '../../api/client';
 import type { Attendance, Salary, Driver, AttendanceType, SalaryPaymentStatus, Expense } from '../../types';
 import { SalarySlipModal } from '../../components/SalarySlipModal';
 import { shareSalarySlipOnWhatsApp } from '../../utils/salarySlip';
+import { confirmAction } from '../../utils/alert';
 import {
   CalendarCheck,
   BadgeDollarSign,
@@ -266,24 +267,18 @@ export const OwnerAttendanceSalaryScreen: React.FC = () => {
   };
 
   const handleDeleteAttendance = (att: Attendance) => {
-    Alert.alert(
+    confirmAction(
       'Delete Attendance',
       `Delete attendance record for ${att.driver?.name || 'Driver'} on ${att.date}?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await api.deleteAttendance(att.id);
-              loadAttendance();
-            } catch (err: any) {
-              Alert.alert('Error', err.message || 'Failed to delete record.');
-            }
-          },
-        },
-      ]
+      async () => {
+        try {
+          await api.deleteAttendance(att.id);
+          loadAttendance();
+        } catch (err: any) {
+          Alert.alert('Error', err.message || 'Failed to delete record.');
+        }
+      },
+      'Delete'
     );
   };
 
@@ -414,24 +409,18 @@ export const OwnerAttendanceSalaryScreen: React.FC = () => {
   };
 
   const handleDeleteSalary = (sal: Salary) => {
-    Alert.alert(
+    confirmAction(
       'Delete Payroll',
       `Delete salary record for ${sal.driver?.name || 'Driver'} for ${MONTH_NAMES[sal.month - 1]}?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await api.deleteSalary(sal.id);
-              loadSalaries();
-            } catch (err: any) {
-              Alert.alert('Error', err.message || 'Failed to delete record.');
-            }
-          },
-        },
-      ]
+      async () => {
+        try {
+          await api.deleteSalary(sal.id);
+          loadSalaries();
+        } catch (err: any) {
+          Alert.alert('Error', err.message || 'Failed to delete record.');
+        }
+      },
+      'Delete'
     );
   };
 
@@ -1425,9 +1414,8 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   modalInput: {
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
-    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.surfaceLow,
+    borderRadius: theme.radius.lg,
     paddingHorizontal: 12,
     paddingVertical: 10,
     ...theme.typography.bodyLg,
@@ -1464,13 +1452,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 10,
     alignItems: 'center',
-    borderRadius: theme.radius.md,
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
+    borderRadius: theme.radius.lg,
+    backgroundColor: theme.colors.surfaceLow,
   },
   typeBtnActive: {
     backgroundColor: theme.colors.primaryContainer,
-    borderColor: theme.colors.primaryContainer,
   },
   typeText: {
     ...theme.typography.labelMd,
@@ -1507,7 +1493,7 @@ const styles = StyleSheet.create({
     color: theme.colors.secondary,
   },
   submitBtn: {
-    height: 48,
+    height: 56,
     backgroundColor: theme.colors.primaryContainer,
     borderRadius: theme.radius.lg,
     alignItems: 'center',

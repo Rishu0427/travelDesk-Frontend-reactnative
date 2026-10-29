@@ -475,9 +475,8 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   inputWrap: {
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
-    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.surfaceLow,
+    borderRadius: theme.radius.lg,
     paddingHorizontal: 14,
     height: 48,
     justifyContent: 'center',
@@ -486,9 +485,8 @@ const styles = StyleSheet.create({
   inputWrapWithPrefix: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: theme.colors.borderLight,
-    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.surfaceLow,
+    borderRadius: theme.radius.lg,
     paddingHorizontal: 14,
     height: 48,
     marginBottom: 8,
@@ -587,7 +585,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   submitBtn: {
-    height: 48,
+    height: 56,
     backgroundColor: theme.colors.primaryContainer,
     borderRadius: theme.radius.lg,
     alignItems: 'center',
