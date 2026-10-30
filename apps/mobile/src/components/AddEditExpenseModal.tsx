@@ -284,8 +284,8 @@ export const AddEditExpenseModal: React.FC<AddEditExpenseModalProps> = ({
                   {!isOwner
                     ? (language === 'HI' ? 'यात्रा खर्च विवरण' : 'Log Trip Expense')
                     : (roleMode === 'driver'
-                        ? (language === 'HI' ? 'चालक व्यय' : 'Driver View')
-                        : (language === 'HI' ? 'मालिक खाता' : 'Fleet Owner'))}
+                      ? (language === 'HI' ? 'चालक व्यय' : 'Driver View')
+                      : (language === 'HI' ? 'मालिक खाता' : 'Fleet Owner'))}
                 </Text>
               </View>
             </View>

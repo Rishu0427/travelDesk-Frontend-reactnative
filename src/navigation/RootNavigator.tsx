@@ -7,6 +7,7 @@ import { theme } from '../constants/theme';
 import { LoginScreen } from '../screens/auth/LoginScreen';
 import { RegisterScreen } from '../screens/auth/RegisterScreen';
 import { DriverHomeScreen } from '../screens/driver/DriverHomeScreen';
+import { DriverTripsExpensesScreen } from '../screens/driver/DriverTripsExpensesScreen';
 import { OwnerTabNavigator } from './OwnerTabNavigator';
 
 const Stack = createNativeStackNavigator();
@@ -33,7 +34,10 @@ export const RootNavigator: React.FC = () => {
         ) : user.role === 'OWNER' || user.role === 'ADMIN' ? (
           <Stack.Screen name="OwnerApp" component={OwnerTabNavigator} />
         ) : (
-          <Stack.Screen name="DriverApp" component={DriverHomeScreen} />
+          <>
+            <Stack.Screen name="DriverApp" component={DriverHomeScreen} />
+            <Stack.Screen name="DriverTripsExpenses" component={DriverTripsExpensesScreen} />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

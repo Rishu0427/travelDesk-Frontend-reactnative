@@ -10,6 +10,7 @@ import {
   Alert,
   Platform,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../context/AuthContext';
 import { api } from '../../api/client';
 import { theme } from '../../constants/theme';
@@ -153,6 +154,7 @@ type FeedItem =
   | { type: 'expense'; date: string; rawDate: Date; data: Expense };
 
 export const DriverHomeScreen: React.FC = () => {
+  const navigation = useNavigation<any>();
   const { user, logout } = useAuth();
   const [language, setLanguage] = useState<'en' | 'hi'>('en');
   const t = TRANSLATIONS[language];
@@ -537,9 +539,7 @@ export const DriverHomeScreen: React.FC = () => {
             <TouchableOpacity
               style={styles.seeAllBtn}
               onPress={() => {
-                const latestTrip = allTrips && allTrips.length > 0 ? allTrips[0] : null;
-                setTripToEdit(latestTrip);
-                setIsTripModalOpen(true);
+                navigation.navigate('DriverTripsExpenses');
               }}
               activeOpacity={0.7}
             >

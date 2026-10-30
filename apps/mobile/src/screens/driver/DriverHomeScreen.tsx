@@ -10,6 +10,7 @@ import {
   Alert,
   Platform,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../context/AuthContext';
 import { api } from '../../api/client';
 import { theme } from '../../constants/theme';
@@ -153,6 +154,7 @@ type FeedItem =
   | { type: 'expense'; date: string; rawDate: Date; data: Expense };
 
 export const DriverHomeScreen: React.FC = () => {
+  const navigation = useNavigation<any>();
   const { user, logout } = useAuth();
   const [language, setLanguage] = useState<'en' | 'hi'>('en');
   const t = TRANSLATIONS[language];
@@ -492,24 +494,23 @@ export const DriverHomeScreen: React.FC = () => {
                   {latestSalary
                     ? `₹${calculateNetPayable(latestSalary).toLocaleString('en-IN')}`
                     : profile?.salary
-                    ? `₹${profile.salary.toLocaleString('en-IN')}`
-                    : '--'}
+                      ? `₹${profile.salary.toLocaleString('en-IN')}`
+                      : '--'}
                 </Text>
                 <Text style={styles.salarySlipDot}>•</Text>
                 <Text style={styles.salarySlipStatus} numberOfLines={1}>
                   {latestSalary
-                    ? `${monthStats.monthName} ${monthStats.year} • ${
-                        latestSalary.paymentStatus === 'PAID'
-                          ? language === 'hi'
-                            ? 'भुगतान संपन्न'
-                            : 'Paid'
-                          : language === 'hi'
-                          ? 'लंबित'
-                          : 'Pending'
-                      }`
+                    ? `${monthStats.monthName} ${monthStats.year} • ${latestSalary.paymentStatus === 'PAID'
+                      ? language === 'hi'
+                        ? 'भुगतान संपन्न'
+                        : 'Paid'
+                      : language === 'hi'
+                        ? 'लंबित'
+                        : 'Pending'
+                    }`
                     : language === 'hi'
-                    ? 'वेतन पर्ची अभी नहीं बनी है'
-                    : 'Awaiting admin generation'}
+                      ? 'वेतन पर्ची अभी नहीं बनी है'
+                      : 'Awaiting admin generation'}
                 </Text>
               </View>
             </View>
@@ -537,9 +538,7 @@ export const DriverHomeScreen: React.FC = () => {
             <TouchableOpacity
               style={styles.seeAllBtn}
               onPress={() => {
-                const latestTrip = allTrips && allTrips.length > 0 ? allTrips[0] : null;
-                setTripToEdit(latestTrip);
-                setIsTripModalOpen(true);
+                navigation.navigate('DriverTripsExpenses');
               }}
               activeOpacity={0.7}
             >

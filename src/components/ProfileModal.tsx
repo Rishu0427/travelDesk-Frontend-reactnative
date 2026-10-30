@@ -343,7 +343,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
   };
 
   const baseSalaryVal = profile?.salary ? Number(profile.salary) : 18000;
-  const estPayoutVal = latestSalary?.netPayable ? Number(latestSalary.netPayable) : 21800;
+  const estPayoutVal = (latestSalary as any)?.netPayable ? Number((latestSalary as any).netPayable) : 21800;
 
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
@@ -357,7 +357,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
 
           {/* Modal Header */}
           <View style={styles.header}>
-            <View class="flex-row items-center gap-2" style={styles.headerLeft}>
+            <View style={styles.headerLeft}>
               <View
                 style={[
                   styles.avatarBadge,
